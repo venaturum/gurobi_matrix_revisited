@@ -5,7 +5,7 @@ This repository provides models for solving Gurobi's "Matrix Revisited" problem.
 https://www.gurobi.com/resource/holiday-tech-talk-santas-bag-of-interesting-unusual-optimization-applications
 
 
-In this problem we have a target matrix $B$ and a pool of matrices $K = \{M_{1}, M_{2}, \ldots, M_{|K|}\}$.  We wish to take a linear combination of the matrices in the pool, using only integer coefficients, to produce a matrix "closest" to the target.
+In this problem we have a target matrix $B$ and a pool of matrices $K = \lbrace M_{1}, M_{2}, \ldots, M_{|K|} \rbrace$.  We wish to take a linear combination of the matrices in the pool, using only integer coefficients, to produce a matrix "closest" to the target.
 
 The notion of "closest" is defined to be either the L1 or L2 norm, and there are models implementing both.
 
@@ -19,13 +19,13 @@ A comparison of results over a set of randomly generated problem instances can b
 
 $B$ : the target matrix of size $m \times n$
 
-$K = \{M_{1}, M_{2}, \ldots, M_{|K|}\}$: the set of matrices (of size $m \times n$) in the pool
+$K = \lbrace M_{1}, M_{2}, \ldots, M_{|K|} \rbrace$: the set of matrices (of size $m \times n$) in the pool
 
-$$I = \{1, 2, \ldots, mn\}$$
+$I = \lbrace 1, 2, \ldots, mn \rbrace$
 
 $b =$ vec$(B)$, where *vec* is the [vectorizaton](https://en.wikipedia.org/wiki/Vectorization_(mathematics)) transformation
 
-$$A = \begin{bmatrix} \vert & \vert & & \vert\\ vec(M_{1}) & vec(M_{2}) & \cdots & vec(M_{|K|})\\ \vert & \vert & & \vert \end{bmatrix}$$
+$A =$ $\begin{bmatrix} \vert & \vert & & \vert\\ vec(M_{1}) & vec(M_{2}) & \cdots & vec(M_{|K|})\\ \vert & \vert & & \vert \end{bmatrix}$
 
 
 ## Models using the L2 Norm
