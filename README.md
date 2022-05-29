@@ -25,7 +25,16 @@ $I = \lbrace 1, 2, \ldots, mn \rbrace$
 
 $b =$ vec$(B)$, where *vec* is the [vectorizaton](https://en.wikipedia.org/wiki/Vectorization_(mathematics)) transformation
 
-$A =$ $\begin{bmatrix}\vert & \vert & & \vert \\ v & v & \cdots & v \\ \vert & \vert & & \vert \end{bmatrix}$
+$A = \begin{bmatrix}\vert & \vert & & \vert\\ vec(M_{1}) & vec(M_{2}) & \cdots & vec(M_{|K|})\\ \vert & \vert & & \vert \end{bmatrix}$
+
+$A = \begin{bmatrix}p & p & & p\\ vec(M_{1}) & vec(M_{2}) & \cdots & vec(M_{|K|})\\ p & p & & p \end{bmatrix}$
+
+$A = \begin{bmatrix}\vert & \vert & & \vert \\\\ vec(M_{1}) & vec(M_{2}) & \cdots & vec(M_{|K|}) \\\\ \vert & \vert & & \vert \end{bmatrix}$
+
+
+
+$A = \begin{bmatrix}\vert & \vert & & \vert\\\ vec(M_{1}) & vec(M_{2}) & \cdots & vec(M_{|K|})\\\ \vert & \vert & & \vert \end{bmatrix}$
+
 
 
 ## Models using the L2 Norm
