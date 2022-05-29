@@ -21,7 +21,7 @@ A comparison of results over a set of randomly generated problem instances can b
 * $K = \lbrace M_{1}, M_{2}, \ldots, M_{|K|} \rbrace$: the set of matrices (of size $m \times n$) in the pool
 * $I = \lbrace 1, 2, \ldots, mn \rbrace$
 * $b =$ vec$(B)$, where *vec* is the [vectorizaton](https://en.wikipedia.org/wiki/Vectorization_(mathematics)) transformation
-* $A = \begin{bmatrix}\vert & \vert & & \vert\\\ vec(M_{1}) & vec(M_{2}) & \cdots & vec(M_{|K|})\\\ \vert & \vert & & \vert \end{bmatrix}$
+* $A = \begin{bmatrix}\vert & \vert & & \vert\\\ \text{vec}(M_{1}) & \text{vec}(M_{2}) & \cdots & \text{vec}(M_{|K|})\\\ \vert & \vert & & \vert \end{bmatrix}$
 
 
 ## Models using the L2 Norm
