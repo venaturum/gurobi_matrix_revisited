@@ -89,12 +89,12 @@ $$
 
 $$
 \begin{aligned} 
-\text{min } & \sum_{i \in I} s'_i&\\
+\text{min } & \sum_{i \in I} s^\prime_i&\\
 \text{s.t. } &&\\
 & \sum_{k \in K} a_{ik}x_{ik} + s_i = b, & \forall i \in I,\\
-& s'_{i} \geq s_{i}, & \forall i \in I,\\
-& s'_{i} \geq -s_{i}, & \forall i \in I,\\
-& x \in \mathbb{Z}^{|K|}, s \in \mathbb{R}^{|I|}, s' \in \mathbb{R}^{|I|}_{\geq 0}.&
+& s^\prime_{i} \geq s_{i}, & \forall i \in I,\\
+& s^\prime_{i} \geq -s_{i}, & \forall i \in I,\\
+& x \in \mathbb{Z}^{|K|}, s \in \mathbb{R}^{|I|}, s^\prime \in \mathbb{R}^{|I|}_{\geq 0}.&
 \end{aligned}
 $$
 
@@ -102,12 +102,12 @@ $$
 
 $$
 \begin{aligned} 
-\text{min } & \unicode{x1D7D9}^T s'&\\
+\text{min } & \unicode{x1D7D9}^T s^\prime&\\
 \text{s.t. } &&\\
 & Ax + s = b,&\\
-& s' - s \geq 0,&\\
-& s' + s \geq 0,&\\
-& x \in \mathbb{Z}^{|K|}, s \in \mathbb{R}^{|I|}, s' \in \mathbb{R}^{|I|}_{\geq 0}.&
+& s^\prime - s \geq 0,&\\
+& s^\prime + s \geq 0,&\\
+& x \in \mathbb{Z}^{|K|}, s \in \mathbb{R}^{|I|}, s^\prime \in \mathbb{R}^{|I|}_{\geq 0}.&
 \end{aligned}
 $$
 
