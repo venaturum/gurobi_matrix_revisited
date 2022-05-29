@@ -89,12 +89,12 @@ $$
 
 $$
 \begin{aligned} 
-\text{min } & \sum_{i \in I} s^{\prime}_{i}&\\
+\text{min } & \sum_{i \in I} s_{i}^{\prime}&\\
 \text{s.t. } &&\\
 & \sum_{k \in K} a_{ik}x_{ik} + s_{i} = b, & \forall i \in I,\\
-& s^{\prime}_{i} \geq s_{i}, & \forall i \in I,\\
-& s^{\prime}_{i} \geq -s_{i}, & \forall i \in I,\\
-& x \in \mathbb{Z}^{|K|}, s \in \mathbb{R}^{|I|}, s^{\prime} \in \mathbb{R}^{|I|}_{\geq 0}.&
+& s_{i}^{\prime} \geq s_{i}, & \forall i \in I,\\
+& s_{i}^{\prime} \geq -s_{i}, & \forall i \in I,\\
+& x \in \mathbb{Z}^{|K|}, s \in \mathbb{R}^{|I|}, s^{\prime} \in \mathbb{R}_{\geq 0}^{|I|}.&
 \end{aligned}
 $$
 
@@ -119,7 +119,7 @@ $$
 \text{min } & \sum_{i \in I} (s^{+}_{i} + s^{-}_{i})&\\
 \text{s.t. } &&\\
 & \sum_{k \in K} a_{ik}x_{ik} + s^{+}_{i} - s^{-}_{i} = b_i, & \forall i \in I,\\
-& SOS_1(s^{+}_{i}, s^{-}_{i}), & \forall i \in I,\\
+& SOS_{1}(s_{i}^{+}, s_{i}^{-}), & \forall i \in I,\\
 & x \in \mathbb{Z^{|K|}},&\\
 & s^{+}, s^{-} \in \mathbb{R}^{|I|}_{\geq 0}.&
 \end{aligned}
@@ -132,7 +132,7 @@ $$
 \text{min } & \unicode{x1D7D9}^T (s^{+} + s^{-})&\\
 \text{s.t. } &&\\
 & Ax + s^{+} - s^{-} = b,&\\
-& SOS_1(s^{+}_{i}, s^{-}_{i}), & \forall i \in I,\\
+& SOS_{1}(s_{i}^{+}, s_{i}^{-}), & \forall i \in I,\\
 & x \in \mathbb{Z}^{|K|},&\\
 & s^{+}, s^{-} \in \mathbb{R}^{|I|}_{\geq 0}.&
 \end{aligned}
