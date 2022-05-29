@@ -35,9 +35,9 @@ TODO:
 
 $$
 \begin{aligned} 
-\text{min } & \sum_{i \in I} s_i^2\\
+\text{min } & \sum_{i \in I} s_{i}^{2}\\
 \text{s.t. } &&\\
-& \sum_{k \in K} a_{ik}x_{ik} + s_i = b_i, & \forall i \in I,\\
+& \sum_{k \in K} a_{ik}x_{ik} + s_{i} = b_{i}, & \forall i \in I,\\
 & x \in \mathbb{Z}^{|K|}, s \in \mathbb{R}^{|I|}.&
 \end{aligned}
 $$
@@ -46,7 +46,7 @@ $$
 
 $$
 \begin{aligned} 
-\text{min } & s^Ts\\
+\text{min } & s^{T}s\\
 \text{s.t. } &&\\
 & Ax + s = b,\\
 & x \in \mathbb{Z}^{|K|}, s \in \mathbb{R}^{|I|}.&
@@ -67,9 +67,9 @@ Implemented using Gurobi's [Model.feasRelaxS](https://www.gurobi.com/documentati
 
 $$
 \begin{aligned} 
-\text{min } & \sum_{i \in I} |s_i|&\\
+\text{min } & \sum_{i \in I} |s_{i}|&\\
 \text{s.t. } &&\\
-& \sum_{k \in K} a_{ik}x_{ik} + s_i = b_i, & \forall i \in I,\\
+& \sum_{k \in K} a_{ik}x_{ik} + s_{i} = b_{i}, & \forall i \in I,\\
 & x \in \mathbb{Z}^{|K|}, s \in \mathbb{R}^{|I|}.&
 \end{aligned}
 $$
@@ -77,7 +77,7 @@ $$
 ##### MR_Cons_Relax_L1 (matrix notation)
 $$
 \begin{aligned} 
-\text{min } & \lVert s \rVert_1&\\
+\text{min } & \lVert s \rVert_{1}&\\
 \text{s.t. } &&\\
 & Ax + s = b, & \\
 & x \in \mathbb{Z}^{|K|}, s \in \mathbb{R}^{|I|}.&
@@ -89,12 +89,12 @@ $$
 
 $$
 \begin{aligned} 
-\text{min } & \sum_{i \in I} s^\prime_i&\\
+\text{min } & \sum_{i \in I} s^{\prime}_{i}&\\
 \text{s.t. } &&\\
-& \sum_{k \in K} a_{ik}x_{ik} + s_i = b, & \forall i \in I,\\
-& s^\prime_{i} \geq s_{i}, & \forall i \in I,\\
-& s^\prime_{i} \geq -s_{i}, & \forall i \in I,\\
-& x \in \mathbb{Z}^{|K|}, s \in \mathbb{R}^{|I|}, s^\prime \in \mathbb{R}^{|I|}_{\geq 0}.&
+& \sum_{k \in K} a_{ik}x_{ik} + s_{i} = b, & \forall i \in I,\\
+& s^{\prime}_{i} \geq s_{i}, & \forall i \in I,\\
+& s^{\prime}_{i} \geq -s_{i}, & \forall i \in I,\\
+& x \in \mathbb{Z}^{|K|}, s \in \mathbb{R}^{|I|}, s^{\prime} \in \mathbb{R}^{|I|}_{\geq 0}.&
 \end{aligned}
 $$
 
@@ -102,12 +102,12 @@ $$
 
 $$
 \begin{aligned} 
-\text{min } & \unicode{x1D7D9}^T s^\prime&\\
+\text{min } & \unicode{x1D7D9}^{T} s^{\prime}&\\
 \text{s.t. } &&\\
 & Ax + s = b,&\\
-& s^\prime - s \geq 0,&\\
-& s^\prime + s \geq 0,&\\
-& x \in \mathbb{Z}^{|K|}, s \in \mathbb{R}^{|I|}, s^\prime \in \mathbb{R}^{|I|}_{\geq 0}.&
+& s^{\prime} - s \geq 0,&\\
+& s^{\prime} + s \geq 0,&\\
+& x \in \mathbb{Z}^{|K|}, s \in \mathbb{R}^{|I|}, s^{\prime} \in \mathbb{R}^{|I|}_{\geq 0}.&
 \end{aligned}
 $$
 
@@ -116,10 +116,10 @@ $$
 
 $$
 \begin{aligned} 
-\text{min } & \sum_{i \in I} (s^{+}_i + s^{-}_i)&\\
+\text{min } & \sum_{i \in I} (s^{+}_{i} + s^{-}_{i})&\\
 \text{s.t. } &&\\
-& \sum_{k \in K} a_{ik}x_{ik} + s^{+}_i - s^{-}_i = b_i, & \forall i \in I,\\
-& SOS_1(s^+_i, s^-_i), & \forall i \in I,\\
+& \sum_{k \in K} a_{ik}x_{ik} + s^{+}_{i} - s^{-}_{i} = b_i, & \forall i \in I,\\
+& SOS_1(s^{+}_{i}, s^{-}_{i}), & \forall i \in I,\\
 & x \in \mathbb{Z^{|K|}},&\\
 & s^{+}, s^{-} \in \mathbb{R}^{|I|}_{\geq 0}.&
 \end{aligned}
@@ -129,10 +129,10 @@ $$
 
 $$
 \begin{aligned} 
-\text{min } & \unicode{x1D7D9}^T (s^+ + s^-)&\\
+\text{min } & \unicode{x1D7D9}^T (s^{+} + s^{-})&\\
 \text{s.t. } &&\\
 & Ax + s^{+} - s^{-} = b,&\\
-& SOS_1(s^+_i, s^-_i), & \forall i \in I,\\
+& SOS_1(s^{+}_{i}, s^{-}_{i}), & \forall i \in I,\\
 & x \in \mathbb{Z}^{|K|},&\\
 & s^{+}, s^{-} \in \mathbb{R}^{|I|}_{\geq 0}.&
 \end{aligned}
