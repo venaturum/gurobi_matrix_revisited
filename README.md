@@ -4,34 +4,29 @@ This repository provides models for solving Gurobi's "Matrix Revisited" problem.
 
 https://www.gurobi.com/resource/holiday-tech-talk-santas-bag-of-interesting-unusual-optimization-applications
 
-CONTINUE INTRO
+In this problem we have a target matrix $B$ and a pool of matrices $K = \lbrace M_{1}, M_{2}, \ldots, M_{|K|} \rbrace$.  We wish to take a linear combination of the matrices in the pool, using only integer coefficients, to produce a matrix "closest" to the target.
+
+The notion of "closest" is defined to be either the L1 or L2 norm, and there are models implementing both.
+
+The models are implemented using [*gurobipy*](https://pypi.org/project/gurobipy/), in particular the matrix API (it is only fitting in this context)!
+
+Two heuristics are provided for producing an initial solution, both based on LP rounding, but implemented via linear regression with [*scikit-learn*](https://scikit-learn.org).
+
+A comparison of results over a set of randomly generated problem instances can be found in */matrix_revisited/notebooks/analysis.ipynb*
+
+## Modelling definitions
+
+* $B$ : the target matrix of size $m \times n$
+* $K = \lbrace M_{1}, M_{2}, \ldots, M_{|K|} \rbrace$: the set of matrices (of size $m \times n$) in the pool
+* $I = \lbrace 1, 2, \ldots, mn \rbrace$
+* $b =$ vec$(B)$, where *vec* is the [vectorizaton](https://en.wikipedia.org/wiki/Vectorization_(mathematics)) transformation
+* $A = \begin{bmatrix}\vert & \vert & & \vert\\\ \text{vec}(M_{1}) & \text{vec}(M_{2}) & \cdots & \text{vec}(M_{|K|})\\\ \vert & \vert & & \vert \end{bmatrix}$
 
 
-## Installation
+## Models using the L2 Norm
+### MR_Quad
 
-This project requires Python 3.8, or above, [Poetry](https://python-poetry.org/docs/#installation), and a valid Gurobi license.
-
-With Poetry installed on your system, clone this repository and run
-
-    poetry install
-
-in a terminal from the root directory.  This will create a virtual environment that you can activate with 
-
-    poetry shell
-
-
-## TODO
-
-TODO:
-   - Introduction
-   - Document folder structure
-   - Document how to import models
-   - Document how to run experiment
-   - Document .prob file formate
-
-
-### Models using the L2 Norm
-#### MR_Quad
+This is a Quadratic Program in which the objective is to minimise the L2 Norm of a vector of slack variables.
 
 $$
 \begin{aligned} 
@@ -42,7 +37,7 @@ $$
 \end{aligned}
 $$
 
-##### MR_Quad (matrix notation)
+#### MR_Quad (matrix notation)
 
 $$
 \begin{aligned} 
@@ -54,16 +49,16 @@ $$
 $$
 
 
-#### MR_Cons_Relax_L2
+### MR_Cons_Relax_L2
 
-Conceptually the same model as above, but implemented using Gurobi's [Model.feasRelaxS](https://www.gurobi.com/documentation/9.5/refman/py_model_feasrelaxs.html) method to minimise the sum of squares of constraint violations.  Note that $s$ variables are omitted in the implementation.
+This model is conceptually the same model as above, but implemented using Gurobi's [Model.feasRelaxS](https://www.gurobi.com/documentation/9.5/refman/py_model_feasrelaxs.html) method to minimise the sum of squares of constraint violations.  Note that $s$ variables, and therefore the objective functions, are not required for the implementation.
 
 
-### Models using the L1 Norm
+## Models using the L1 Norm
 
-#### MR_Cons_Relax_L1
+### MR_Cons_Relax_L1
 
-Implemented using Gurobi's [Model.feasRelaxS](https://www.gurobi.com/documentation/9.5/refman/py_model_feasrelaxs.html) method to minimise the total magnitude of constraint violations.  Note that $s$ variables are omitted in the implementation.
+This model is also implemented using Gurobi's `Model.feasRelaxS` method.  A simple parameter change permits the objective function be the total magnitude of constraint violations.  Again, the $s$ variables, and therefore the objective functions, are not required for the implementation.
 
 $$
 \begin{aligned} 
@@ -74,7 +69,7 @@ $$
 \end{aligned}
 $$
 
-##### MR_Cons_Relax_L1 (matrix notation)
+#### MR_Cons_Relax_L1 (matrix notation)
 $$
 \begin{aligned} 
 \text{min } & \lVert s \rVert_{1}&\\
@@ -85,7 +80,9 @@ $$
 $$
 
 
-#### MR_MILP_L1
+### MR_MILP_L1
+
+This model introduces a second set of slack variables $s^{\prime}$, and associated constraints, to linearise the L1 Norm of $s$.
 
 $$
 \begin{aligned} 
@@ -98,7 +95,7 @@ $$
 \end{aligned}
 $$
 
-##### MR_MILP_L1 (matrix notation)
+#### MR_MILP_L1 (matrix notation)
 
 $$
 \begin{aligned} 
@@ -112,7 +109,9 @@ $$
 $$
 
 
-#### MR_MILP_L1_SOS
+### MR_MILP_L1_SOS
+
+Here we utilise two sets of slack variables, both non-negative, which capture the positive or negative violation of the main family of constraints respectively.  These two sets of slack variables are linked through [SOS (type 1)](https://www.gurobi.com/documentation/9.5/refman/py_sos.html) constraints.
 
 $$
 \begin{aligned} 
@@ -125,7 +124,7 @@ $$
 \end{aligned}
 $$
 
-##### MR_MILP_L1_SOS (matrix notation)
+#### MR_MILP_L1_SOS (matrix notation)
 
 $$
 \begin{aligned} 
@@ -137,3 +136,62 @@ $$
 & s^{+}, s^{-} \in \mathbb{R}^{|I|}_{\geq 0}.&
 \end{aligned}
 $$
+
+## Initial solution heuristics
+
+Two heuristics, based on linear regression with `scikit-learn` are provided, and referred to as "rounding" and "iterative rounding".  The first of these will perform a linear regression on the dataset $(A, b)$ (no intercept).  The coefficients found when performing this regression will correspond to a solution to a linear relaxation of either of the two "L2 Norm models" implemented.  The advantage of a linear regression here is that it enables a concise formulation.
+
+The "rounding" heuristic will round the linear regression coefficients to their nearest integer value, while the "iterative_rounding" heuristic will loop, rounding whichever variable is closest to integral, before reformulating the regression and refitting.
+
+## Installation
+
+This project requires Python 3.8, or above, [Poetry](https://python-poetry.org/docs/#installation), and a valid Gurobi license.
+
+With Poetry installed on your system, clone this repository and run
+
+    poetry install
+
+in a terminal from the root directory.  This will create a virtual environment in which all project dependencies will be installed.  In addition, the project itself will be loaded as an *editable install*, meaning that it will have the look and feel of a package called *matrix_revisited*.
+
+The virtual environment can be activated with 
+
+    poetry shell
+
+and includes gurobipy, numpy, scipy, pandas, scikit-learn, matplotlib, seaborn and ipykernel.  The addition of ipykernel facilitates the use of Jupyter notebooks in IDEs such as VS Code (recommended) and PyCharm.  JupyterLab can also be used, assuming it is installed elsewhere as it is not part of the environment defined for this project.
+
+## Using Models
+
+Each of the models is defined by a class which wraps a `gurobipy.Model`.  These classes are derived from a common base class to leverage polymorphism.  They belong to the module `matrix_revisited.models` and share the same constructor signature.  The docstring for the signature can be examined with Python's `help` function, e.g.
+
+    >> from matrix_revisited.models import MR_Quad
+    >> help(MR_Quad.__init__)
+
+Creating an object will cause the underlying model to be built - the `optimize()` method can be called.  Eg
+
+    >> from matrix_revisited.problem_data import example
+    >> matrices, target = example()
+    >> mr_quad = MR_Quad(matrices, target)
+    >> results = mr_quad.optimize()
+
+Alternatively a class method, `run()`, is defined which will facilitate creating a model and optimising in one line, e.g.  
+
+    >> results = MR_Quad.run(matrices, target)
+
+The return from these functions is a dictionary, detailing a few key pieces of data.  The `run` method can also be used to execute the model repeatedly and aggregate the result, recording mean and standard deviation where relevant (e.g. runtime):
+
+    >> results = MR_Quad.run(matrices, target, runs=10)
+
+## Running experiments
+
+
+## Running from command line
+
+
+## TODO
+
+TODO:
+   - Document folder structure
+   - Document how to run experiment
+   - Document .prob file formate
+
+
