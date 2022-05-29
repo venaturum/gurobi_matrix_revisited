@@ -43,6 +43,8 @@ $$
 \end{aligned}
 $$
 
+##### MR_Quad (matrix notation)
+
 $$
 \begin{aligned} 
 \text{min } & s^Ts\\
@@ -75,6 +77,7 @@ $$
 \end{aligned}
 $$
 
+##### MR_Cons_Relax_L1 (matrix notation)
 $$
 \begin{aligned} 
 \text{min } & \lVert s \rVert_1&\\
@@ -100,6 +103,8 @@ $$
 & s' \in \mathbb{R}^{|I|}_{\geq 0}.&
 \end{aligned}
 $$
+
+##### MR_MILP_L1 (matrix notation)
 
 $$
 \begin{aligned} 
@@ -128,6 +133,8 @@ $$
 & s^{-} \in \mathbb{R}^{|I|}_{\geq 0},&\\
 \end{aligned}
 $$
+
+##### MR_MILP_L1_SOS (matrix notation)
 
 $$
 \begin{aligned} 
