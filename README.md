@@ -4,7 +4,6 @@ This repository provides models for solving Gurobi's "Matrix Revisited" problem.
 
 https://www.gurobi.com/resource/holiday-tech-talk-santas-bag-of-interesting-unusual-optimization-applications
 
-
 In this problem we have a target matrix $B$ and a pool of matrices $K = \lbrace M_{1}, M_{2}, \ldots, M_{|K|} \rbrace$.  We wish to take a linear combination of the matrices in the pool, using only integer coefficients, to produce a matrix "closest" to the target.
 
 The notion of "closest" is defined to be either the L1 or L2 norm, and there are models implementing both.
