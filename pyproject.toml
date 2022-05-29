@@ -1,0 +1,38 @@
+# Poetry pyproject.toml: https://python-poetry.org/docs/pyproject/
+
+[build-system]
+requires = ["poetry>=1.0"]
+build-backend = "poetry.masonry.api"
+
+[tool.poetry]
+name = "matrix_revisited"
+version = "0.1.0"
+description = "Fun with Gurobi's 'Matrix Revisited' problem"
+readme = "README.md"
+authors = ["Riley Clement <rileyclement@gmail.com>"]
+maintainers = ["Riley Clement <rileyclement@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = ">=3.8, <3.11"
+gurobipy = "^9.5.1"
+numpy = "^1"
+scipy = "^1"
+pandas = "^1"
+scikit-learn = "^1"
+matplotlib = "^3.5"
+seaborn = "^0.11"
+
+[tool.poetry.scripts]
+matrix_revisited = "matrix_revisited.main:cli"
+
+[tool.poetry.dev-dependencies]
+ipykernel = "^5"
+isort = ">=5.8"
+black = {version = "*", python = "^3.6.2"}
+flake8 = ">=3.9"
+
+[tool.isort]
+# make it compatible with black
+profile = "black"
+multi_line_output = 3
+src_paths = ["."]
