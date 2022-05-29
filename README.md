@@ -28,3 +28,112 @@ TODO:
    - Document how to import models
    - Document how to run experiment
    - Document .prob file formate
+
+
+### Models using the L2 Norm
+#### MR_Quad
+
+$$
+\begin{aligned} 
+\text{min } & \sum_{i \in I} s_{i}^{2}\\
+\text{s.t. } &&\\
+& \sum_{k \in K} a_{ik}x_{ik} + s_{i} = b_{i}, & \forall i \in I,\\
+& x \in \mathbb{Z}^{|K|}, s \in \mathbb{R}^{|I|}.&
+\end{aligned}
+$$
+
+##### MR_Quad (matrix notation)
+
+$$
+\begin{aligned} 
+\text{min } & s^{T}s\\
+\text{s.t. } &&\\
+& Ax + s = b,\\
+& x \in \mathbb{Z}^{|K|}, s \in \mathbb{R}^{|I|}.&
+\end{aligned}
+$$
+
+
+#### MR_Cons_Relax_L2
+
+Conceptually the same model as above, but implemented using Gurobi's [Model.feasRelaxS](https://www.gurobi.com/documentation/9.5/refman/py_model_feasrelaxs.html) method to minimise the sum of squares of constraint violations.  Note that $s$ variables are omitted in the implementation.
+
+
+### Models using the L1 Norm
+
+#### MR_Cons_Relax_L1
+
+Implemented using Gurobi's [Model.feasRelaxS](https://www.gurobi.com/documentation/9.5/refman/py_model_feasrelaxs.html) method to minimise the total magnitude of constraint violations.  Note that $s$ variables are omitted in the implementation.
+
+$$
+\begin{aligned} 
+\text{min } & \sum_{i \in I} |s_{i}|&\\
+\text{s.t. } &&\\
+& \sum_{k \in K} a_{ik}x_{ik} + s_{i} = b_{i}, & \forall i \in I,\\
+& x \in \mathbb{Z}^{|K|}, s \in \mathbb{R}^{|I|}.&
+\end{aligned}
+$$
+
+##### MR_Cons_Relax_L1 (matrix notation)
+$$
+\begin{aligned} 
+\text{min } & \lVert s \rVert_{1}&\\
+\text{s.t. } &&\\
+& Ax + s = b, & \\
+& x \in \mathbb{Z}^{|K|}, s \in \mathbb{R}^{|I|}.&
+\end{aligned}
+$$
+
+
+#### MR_MILP_L1
+
+$$
+\begin{aligned} 
+\text{min } & \sum_{i \in I} s_{i}^{\prime}&\\
+\text{s.t. } &&\\
+& \sum_{k \in K} a_{ik}x_{ik} + s_{i} = b, & \forall i \in I,\\
+& s_{i}^{\prime} \geq s_{i}, & \forall i \in I,\\
+& s_{i}^{\prime} \geq -s_{i}, & \forall i \in I,\\
+& x \in \mathbb{Z}^{|K|}, s \in \mathbb{R}^{|I|}, s^{\prime} \in \mathbb{R}_{\geq 0}^{|I|}.&
+\end{aligned}
+$$
+
+##### MR_MILP_L1 (matrix notation)
+
+$$
+\begin{aligned} 
+\text{min } & \unicode{x1D7D9}^{T} s^{\prime}&\\
+\text{s.t. } &&\\
+& Ax + s = b,&\\
+& s^{\prime} - s \geq 0,&\\
+& s^{\prime} + s \geq 0,&\\
+& x \in \mathbb{Z}^{|K|}, s \in \mathbb{R}^{|I|}, s^{\prime} \in \mathbb{R}^{|I|}_{\geq 0}.&
+\end{aligned}
+$$
+
+
+#### MR_MILP_L1_SOS
+
+$$
+\begin{aligned} 
+\text{min } & \sum_{i \in I} (s_{i}^{+} + s_{i}^{-})&\\
+\text{s.t. } &&\\
+& \sum_{k \in K} a_{ik}x_{ik} + s_{i}^{+} - s_{i}^{-} = b_{i}, & \forall i \in I,\\
+& SOS_{1}(s_{i}^{+}, s_{i}^{-}), & \forall i \in I,\\
+& x \in \mathbb{Z^{|K|}},&\\
+& s^{+}, s^{-} \in \mathbb{R}_{\geq 0}^{|I|}.&
+\end{aligned}
+$$
+
+##### MR_MILP_L1_SOS (matrix notation)
+
+$$
+\begin{aligned} 
+\text{min } & \unicode{x1D7D9}^T (s^{+} + s^{-})&\\
+\text{s.t. } &&\\
+& Ax + s^{+} - s^{-} = b,&\\
+& SOS_{1}(s_{i}^{+}, s_{i}^{-}), & \forall i \in I,\\
+& x \in \mathbb{Z}^{|K|},&\\
+& s^{+}, s^{-} \in \mathbb{R}^{|I|}_{\geq 0}.&
+\end{aligned}
+$$

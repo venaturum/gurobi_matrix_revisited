@@ -151,6 +151,12 @@ class MR_Base(ABC):
         #     "obj_val": self.m.ObjVal,
         # }
 
+    def __repr__(self):
+        return type(self).__name__
+
+    def __str__(self):
+        return type(self).__name__
+
 
 class MR_Quad(MR_Base):
 

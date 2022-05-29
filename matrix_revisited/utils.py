@@ -20,3 +20,7 @@ def display_matrices(*args):
         )
         html_str += "</td></th>"
     display_html(html_str, raw=True)
+
+
+def get_parameters_from_function(func):
+    return func.__code__.co_varnames[: func.__code__.co_argcount]

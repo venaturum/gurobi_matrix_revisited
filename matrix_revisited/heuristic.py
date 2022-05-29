@@ -1,6 +1,12 @@
 import numpy as np
 from sklearn.linear_model import LinearRegression
 
+heuristic_choices = (
+    "skip",
+    "rounding",
+    "iterative_rounding",
+)
+
 
 def set_initial_solution(how, x, A, b):
     """Sets values of variables using a rounding heuristic based on linear regression
@@ -16,7 +22,7 @@ def set_initial_solution(how, x, A, b):
     b : numpy.ndarray
         of size (m,)
     """
-    assert how in ("skip", "rounding", "iterative_rounding")
+    assert how in heuristic_choices
     if how == "rounding":
         set_initial_solution_rounding_heuristic(x, A, b)
     elif how == "iterative_rounding":
