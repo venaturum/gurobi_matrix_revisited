@@ -38,8 +38,7 @@ $$
 \text{min } & \sum_{i \in I} s_i^2\\
 \text{s.t. } &&\\
 & \sum_{k \in K} a_{ik}x_{ik} + s_i = b_i, & \forall i \in I,\\
-& x \in \mathbb{Z}^{|K|},&\\
-& s \in \mathbb{R}^{|I|}.&\\
+& x \in \mathbb{Z}^{|K|}, s \in \mathbb{R}^{|I|}.&
 \end{aligned}
 $$
 
@@ -50,8 +49,7 @@ $$
 \text{min } & s^Ts\\
 \text{s.t. } &&\\
 & Ax + s = b, & \forall i \in I,\\
-& x \in \mathbb{Z}^{|K|},&\\
-& s \in \mathbb{R}^{|I|}.&\\
+& x \in \mathbb{Z}^{|K|}, s \in \mathbb{R}^{|I|}.&
 \end{aligned}
 $$
 
@@ -72,8 +70,7 @@ $$
 \text{min } & \sum_{i \in I} |s_i|&\\
 \text{s.t. } &&\\
 & \sum_{k \in K} a_{ik}x_{ik} + s_i = b_i, & \forall i \in I,\\
-& x \in \mathbb{Z}^{|K|},&\\
-& s \in \mathbb{R}^{|I|}.&\\
+& x \in \mathbb{Z}^{|K|}, s \in \mathbb{R}^{|I|}.&
 \end{aligned}
 $$
 
@@ -83,8 +80,7 @@ $$
 \text{min } & \lVert s \rVert_1&\\
 \text{s.t. } &&\\
 & Ax + s = b, & \\
-& x \in \mathbb{Z}^{|K|},&\\
-& s \in \mathbb{R}^{|I|}.&\\
+& x \in \mathbb{Z}^{|K|}, s \in \mathbb{R}^{|I|}.&
 \end{aligned}
 $$
 
@@ -98,9 +94,7 @@ $$
 & \sum_{k \in K} a_{ik}x_{ik} + s_i = b, & \forall i \in I,\\
 & s'_{i} \geq s_{i}, & \forall i \in I,\\
 & s'_{i} \geq -s_{i}, & \forall i \in I,\\
-& x \in \mathbb{Z}^{|K|},&\\
-& s \in \mathbb{R}^{|I|},&\\
-& s' \in \mathbb{R}^{|I|}_{\geq 0}.&
+& x \in \mathbb{Z}^{|K|}, s \in \mathbb{R}^{|I|}, s' \in \mathbb{R}^{|I|}_{\geq 0}.&
 \end{aligned}
 $$
 
@@ -113,9 +107,7 @@ $$
 & Ax + s = b\\
 & s' - s \geq 0,\\
 & s' + s \geq 0,\\
-& x \in \mathbb{Z}^{|K|},&\\
-& s \in \mathbb{R}^{|I|},&\\
-& s' \in \mathbb{R}^{|I|}_{\geq 0}.&
+& x \in \mathbb{Z}^{|K|}, s \in \mathbb{R}^{|I|}, s' \in \mathbb{R}^{|I|}_{\geq 0}.&
 \end{aligned}
 $$
 
@@ -129,8 +121,7 @@ $$
 & \sum_{k \in K} a_{ik}x_{ik} + s^{+}_i - s^{-}_i = b_i, & \forall i \in I,\\
 & SOS_1(s^+_i, s^-_i), & \forall i \in I,\\
 & x \in \mathbb{Z^{|K|}},&\\
-& s^{+} \in \mathbb{R}^{|I|}_{\geq 0},&\\
-& s^{-} \in \mathbb{R}^{|I|}_{\geq 0},&\\
+& s^{+}, s^{-} \in \mathbb{R}^{|I|}_{\geq 0}.&
 \end{aligned}
 $$
 
@@ -143,7 +134,6 @@ $$
 & Ax + s^{+} - s^{-} = b,\\
 & SOS_1(s^+_i, s^-_i), & \forall i \in I,\\
 & x \in \mathbb{Z}^{|K|},&\\
-& s^{+} \in \mathbb{R}^{|I|}_{\geq 0},&\\
-& s^{-} \in \mathbb{R}^{|I|}_{\geq 0},&\\
+& s^{+}, s^{-} \in \mathbb{R}^{|I|}_{\geq 0}.&
 \end{aligned}
 $$
