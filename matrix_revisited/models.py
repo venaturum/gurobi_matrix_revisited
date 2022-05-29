@@ -2,7 +2,6 @@ from abc import ABC, abstractmethod
 
 import gurobipy as gp
 import numpy as np
-import pandas as pd
 from gurobipy import GRB
 
 from matrix_revisited import heuristic
@@ -92,13 +91,24 @@ class MR_Base(ABC):
         dict
             key/values for model name, intial heuristic used, runtime of optimization, value of first solution found, and best objective value
         """
-        self.m.optimize(self._generate_root_sol_callback())
+        try:
+            self.m.optimize(self._generate_root_sol_callback())
+        except Exception as e:
+            if e.errno == 10010:
+                runtime, init_root_sol, obj_val = np.nan, np.nan, np.nan
+            else:
+                raise e
+        else:
+            runtime = self.m.runtime
+            init_root_sol = self.init_root_sol_obj
+            obj_val = self.m.ObjVal
+
         return {
             "model": self.m.ModelName,
             "init_heur": self.init_heuristic,
-            "runtime": self.m.runtime,
-            "init_root_sol": self.init_root_sol_obj,
-            "obj_val": self.m.ObjVal,
+            "runtime": runtime,
+            "init_root_sol": init_root_sol,
+            "obj_val": obj_val,
         }
 
     def _generate_root_sol_callback(self):
@@ -143,13 +153,6 @@ class MR_Base(ABC):
         return cls._compress_batch_results(
             [cls.run(*args, runs=1, **kwargs, Seed=i) for i in range(runs)]
         )
-        # return {
-        #     "model": results[0]["model"],
-        #     "init_heur": results[0]["init_heur"],
-        #     "runtime (s)": np.mean([r["runtime (s)"]]),
-        #     "init_root_sol": self.init_root_sol_obj,
-        #     "obj_val": self.m.ObjVal,
-        # }
 
     def __repr__(self):
         return type(self).__name__
