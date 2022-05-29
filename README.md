@@ -28,3 +28,15 @@ TODO:
    - Document how to import models
    - Document how to run experiment
    - Document .prob file formate
+
+#### MR_Quad
+
+$$
+\begin{aligned} 
+\text{min} & \sum_{i \in I} s_is_i&\\
+\text{s.t.} &&\\
+& \sum_{k \in K} a_{ik}x_{ik} + s_i = b_i, & \forall i \in I,\\
+& x \in \mathbb{Z},&\\
+& s \in \mathbb{R}.&\\
+\end{aligned}
+$$
