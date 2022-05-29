@@ -5,7 +5,7 @@ from pathlib import Path
 import numpy as np
 
 from matrix_revisited import root_dir
-from matrix_revisited.utils import run
+from matrix_revisited.utils import get_parameters_from_function, run
 
 
 def read_problem_file(filename):
@@ -20,65 +20,16 @@ def example():
     return read_problem_file(root_dir / "problem_files" / "example.prob")
 
 
-# def example():
-#     target = np.array(
-#         [
-#             [7, 8, 2, 0, 3],
-#             [0, 4, 9, 5, 4],
-#             [5, 4, 7, 0, 0],
-#             [4, 4, 4, 1, 6],
-#             [5, 1, 4, 5, 6],
-#         ]
-#     )
+## Match the following list.
 
-#     matrices = np.array(
-#         [
-#             [
-#                 [1, 1, 0, 0, 0],
-#                 [0, 0, 0, 0, 0],
-#                 [0, 0, 0, 1, 0],
-#                 [0, 0, 1, 1, 1],
-#                 [1, 1, 1, 0, 0],
-#             ],
-#             [
-#                 [0, 0, 1, 0, 0],
-#                 [1, 0, 0, 0, 0],
-#                 [0, 1, 0, 0, 0],
-#                 [0, 0, 0, 0, 1],
-#                 [0, 0, 0, 1, 0],
-#             ],
-#             [
-#                 [1, 0, 0, 0, 0],
-#                 [1, 1, 1, 1, 1],
-#                 [0, 1, 1, 0, 0],
-#                 [0, 0, 0, 0, 1],
-#                 [0, 0, 0, 0, 0],
-#             ],
-#             [
-#                 [0, 0, 0, 1, 1],
-#                 [0, 0, 0, 0, 1],
-#                 [0, 1, 1, 0, 0],
-#                 [1, 0, 0, 0, 0],
-#                 [1, 1, 1, 1, 0],
-#             ],
-#             [
-#                 [0, 1, 1, 1, 0],
-#                 [0, 0, 0, 0, 0],
-#                 [0, 0, 0, 0, 0],
-#                 [0, 0, 1, 0, 0],
-#                 [0, 0, 1, 1, 1],
-#             ],
-#             [
-#                 [1, 1, 0, 0, 0],
-#                 [0, 1, 1, 0, 0],
-#                 [0, 0, 1, 1, 0],
-#                 [0, 0, 0, 1, 1],
-#                 [0, 0, 1, 0, 0],
-#             ],
-#         ]
-#     )
-
-#     return matrices, target
+problem_spec_params = [
+    "m",
+    "n",
+    "number_of_matrices",
+    "min_target",
+    "max_target",
+    "sparsity",
+]
 
 
 def generate_instance(
@@ -117,6 +68,9 @@ def generate_instance(
     )
 
     return matrices, target
+
+
+generate_instance_params = get_parameters_from_function(generate_instance)
 
 
 @run
