@@ -175,7 +175,7 @@ class MR_Quad(MR_Base):
 
     def _add_constraints(self):
         self.m.addConstr(
-            self.A @ self.x + np.eye(self.A.shape[0]) @ self.s == self.b,
+            self.A @ self.x + self.s == self.b,
             name="constraints",
         )
 
@@ -232,17 +232,15 @@ class MR_MILP_L1(MR_Base):
 
     def _add_constraints(self):
         self.m.addConstr(
-            self.A @ self.x + np.eye(self.A.shape[0]) @ self.s == self.b,
+            self.A @ self.x + self.s == self.b,
             name="constraints",
         )
         self.m.addConstr(
-            np.eye(self.A.shape[0]) @ self.s_abs - np.eye(self.A.shape[0]) @ self.s
-            >= 0,
+            np.eye(self.A.shape[0]) @ self.s_abs - self.s >= 0,
             name="s_abs_1",
         )
         self.m.addConstr(
-            np.eye(self.A.shape[0]) @ self.s_abs + np.eye(self.A.shape[0]) @ self.s
-            >= 0,
+            np.eye(self.A.shape[0]) @ self.s_abs + self.s >= 0,
             name="s_abs_2",
         )
 
@@ -272,10 +270,7 @@ class MR_MILP_L1_SOS(MR_Base):
 
     def _add_constraints(self):
         self.m.addConstr(
-            self.A @ self.x
-            + np.eye(self.A.shape[0]) @ self.s_pos
-            - np.eye(self.A.shape[0]) @ self.s_neg
-            == self.b,
+            self.A @ self.x + self.s_pos - self.s_neg == self.b,
             name="constraints",
         )
         for s_pos, s_neg in zip(self.s_pos, self.s_neg):
