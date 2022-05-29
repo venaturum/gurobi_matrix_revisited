@@ -48,7 +48,7 @@ $$
 \begin{aligned} 
 \text{min } & s^Ts\\
 \text{s.t. } &&\\
-& Ax + s = b, & \forall i \in I,\\
+& Ax + s = b,\\
 & x \in \mathbb{Z}^{|K|}, s \in \mathbb{R}^{|I|}.&
 \end{aligned}
 $$
@@ -104,9 +104,9 @@ $$
 \begin{aligned} 
 \text{min } & \unicode{x1D7D9}^T s'&\\
 \text{s.t. } &&\\
-& Ax + s = b\\
-& s' - s \geq 0,\\
-& s' + s \geq 0,\\
+& Ax + s = b,&\\
+& s' - s \geq 0,&\\
+& s' + s \geq 0,&\\
 & x \in \mathbb{Z}^{|K|}, s \in \mathbb{R}^{|I|}, s' \in \mathbb{R}^{|I|}_{\geq 0}.&
 \end{aligned}
 $$
@@ -131,7 +131,7 @@ $$
 \begin{aligned} 
 \text{min } & \unicode{x1D7D9}^T (s^+ + s^-)&\\
 \text{s.t. } &&\\
-& Ax + s^{+} - s^{-} = b,\\
+& Ax + s^{+} - s^{-} = b,&\\
 & SOS_1(s^+_i, s^-_i), & \forall i \in I,\\
 & x \in \mathbb{Z}^{|K|},&\\
 & s^{+}, s^{-} \in \mathbb{R}^{|I|}_{\geq 0}.&
