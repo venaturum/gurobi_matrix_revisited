@@ -29,14 +29,68 @@ TODO:
    - Document how to run experiment
    - Document .prob file formate
 
+
+### Models using the L2 Norm
 #### MR_Quad
 
 $$
 \begin{aligned} 
-\text{min} & \sum_{i \in I} s_is_i&\\
+\text{min} & \sum_{i \in I} s_i^2\\
 \text{s.t.} &&\\
 & \sum_{k \in K} a_{ik}x_{ik} + s_i = b_i, & \forall i \in I,\\
-& x \in \mathbb{Z},&\\
-& s \in \mathbb{R}.&\\
+& x \in \mathbb{Z^{|K|}},&\\
+& s \in \mathbb{R^{|I|}}.&\\
+\end{aligned}
+$$
+
+#### MR_Cons_Relax_L2
+
+Conceptually the same model as above, but implemented using Gurobi's [Model.feasRelaxS](https://www.gurobi.com/documentation/9.5/refman/py_model_feasrelaxs.html) method to minimise the sum of squares of constraint violations.  Note that $s$ variables are omitted in the implementation.
+
+
+### Models using the L1 Norm
+
+#### MR_Cons_Relax_L1
+
+Implemented using Gurobi's [Model.feasRelaxS](https://www.gurobi.com/documentation/9.5/refman/py_model_feasrelaxs.html) method to minimise the total magnitude of constraint violations.  Note that $s$ variables are omitted in the implementation.
+
+$$
+\begin{aligned} 
+\text{min} & \sum_{i \in I} |s_i|&\\
+\text{s.t.} &&\\
+& \sum_{k \in K} a_{ik}x_{ik} + s_i = b_i, & \forall i \in I,\\
+& x \in \mathbb{Z^{|K|}},&\\
+& s \in \mathbb{R^{|I|}}.&\\
+\end{aligned}
+$$
+
+
+#### MR_MILP_L1
+
+$$
+\begin{aligned} 
+\text{min} & \sum_{i \in I} s^{abs}_i&\\
+\text{s.t.} &&\\
+& \sum_{k \in K} a_{ik}x_{ik} + s^_i = b_i, & \forall i \in I,\\
+& s^{abs}_{i} \geq s_{i}, & \forall i \in I,\\
+& s^{abs}_{i} \geq -s_{i}, & \forall i \in I,\\
+& x \in \mathbb{Z^{|K|}},&\\
+& s \in \mathbb{R^{|I|}},&\\
+& s^{abs} \in \mathbb{R^|I|},&\\
+\end{aligned}
+$$
+
+
+#### MR_MILP_L1_SOS
+
+$$
+\begin{aligned} 
+\text{min} & \sum_{i \in I} s^{abs}_i&\\
+\text{s.t.} &&\\
+& \sum_{k \in K} a_{ik}x_{ik} + s^{+}_i - s^{-}_i = b_i, & \forall i \in I,\\
+& SOS_1(s^+_i, s^-_i), & \forall i \in I,\\
+& x \in \mathbb{Z^{|K|}},&\\
+& s^{+} \in \mathbb{R^{|I|}_{\geq 0}},&\\
+& s^{-} \in \mathbb{R^{|I|}_{\geq 0}},&\\
 \end{aligned}
 $$
