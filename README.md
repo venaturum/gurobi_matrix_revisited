@@ -116,12 +116,12 @@ $$
 
 $$
 \begin{aligned} 
-\text{min } & \sum_{i \in I} (s^{+}_{i} + s^{-}_{i})&\\
+\text{min } & \sum_{i \in I} (s_{i}^{+} + s_{i}^{-})&\\
 \text{s.t. } &&\\
-& \sum_{k \in K} a_{ik}x_{ik} + s^{+}_{i} - s^{-}_{i} = b_i, & \forall i \in I,\\
+& \sum_{k \in K} a_{ik}x_{ik} + s_{i}^{+} - s_{i}^{-} = b_{i}, & \forall i \in I,\\
 & SOS_{1}(s_{i}^{+}, s_{i}^{-}), & \forall i \in I,\\
 & x \in \mathbb{Z^{|K|}},&\\
-& s^{+}, s^{-} \in \mathbb{R}^{|I|}_{\geq 0}.&
+& s^{+}, s^{-} \in \mathbb{R}_{\geq 0}^{|I|}.&
 \end{aligned}
 $$
 
