@@ -17,11 +17,15 @@ A comparison of results over a set of randomly generated problem instances can b
 
 ## Modelling definitions
 
-* $B$ : the target matrix of size $m \times n$
-* $K = \{M_{1}, M_{2}, \ldots, M_{|K|}\}$: the set of matrices (of size $m \times n$) in the pool
-* $I = \{1, 2, \ldots, mn\}$
-* $b =$ vec$(B)$, where *vec* is the [vectorizaton](https://en.wikipedia.org/wiki/Vectorization_(mathematics)) transformation
-* $A = \begin{bmatrix} \vert & \vert & & \vert\\ vec(M_{1}) & vec(M_{2}) & \cdots & vec(M_{|K|})\\ \vert & \vert & & \vert \end{bmatrix}$
+$B$ : the target matrix of size $m \times n$
+
+$K = \{M_{1}, M_{2}, \ldots, M_{|K|}\}$: the set of matrices (of size $m \times n$) in the pool
+
+$I = \{1, 2, \ldots, mn\}$
+
+$b =$ vec$(B)$, where *vec* is the [vectorizaton](https://en.wikipedia.org/wiki/Vectorization_(mathematics)) transformation
+
+$A = \begin{bmatrix} \vert & \vert & & \vert\\ vec(M_{1}) & vec(M_{2}) & \cdots & vec(M_{|K|})\\ \vert & \vert & & \vert \end{bmatrix}$
 
 
 ## Models using the L2 Norm
