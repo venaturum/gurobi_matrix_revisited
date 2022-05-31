@@ -159,6 +159,24 @@ python-versions = "*"
 matrixapi = ["numpy", "scipy"]
 
 [[package]]
+name = "gurobipy-exceptions"
+version = "0.1.0"
+description = "Extending and patching gurobipy exceptions.  This is neither produced, or endorsed, by Gurobi!"
+category = "main"
+optional = false
+python-versions = "^3.6.2"
+develop = false
+
+[package.dependencies]
+gurobipy = ">=9"
+
+[package.source]
+type = "git"
+url = "https://github.com/venaturum/gurobipy_exceptions.git"
+reference = "main"
+resolved_reference = "d6b6ce29e9f541709c3c61ba20bed642fd68ec2d"
+
+[[package]]
 name = "ipykernel"
 version = "5.5.6"
 description = "IPython Kernel for Jupyter"
@@ -717,7 +735,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.8, <3.11"
-content-hash = "d1508f7d1fdef22bb5e9dc9010f890dda4ee34b16d41d3a04156921359a643a4"
+content-hash = "4d6e5cfd52b9ab5cbc025a379c2fa313618d01a0e49c63956bdea87a591b6e8b"
 
 [metadata.files]
 appnope = [
@@ -863,6 +881,7 @@ gurobipy = [
     {file = "gurobipy-9.5.1-cp39-cp39-manylinux2014_x86_64.whl", hash = "sha256:88d664929e441caa19df64aea19be1e935ee2379570633ee254fd182b9393526"},
     {file = "gurobipy-9.5.1-cp39-cp39-win_amd64.whl", hash = "sha256:61140dab7f85dc22e9523fcd9264f64b291df27175ee0c190cfd23ca3460f0db"},
 ]
+gurobipy-exceptions = []
 ipykernel = [
     {file = "ipykernel-5.5.6-py3-none-any.whl", hash = "sha256:66f824af1ef4650e1e2f6c42e1423074321440ef79ca3651a6cfd06a4e25e42f"},
     {file = "ipykernel-5.5.6.tar.gz", hash = "sha256:4ea44b90ae1f7c38987ad58ea0809562a17c2695a0499644326f334aecd369ec"},

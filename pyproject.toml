@@ -17,6 +17,7 @@ python = ">=3.8, <3.11"
 gurobipy = "^9.5.1"
 numpy = "^1"
 scipy = "^1"
+gurobipy_exceptions = {git = "https://github.com/venaturum/gurobipy_exceptions.git", rev = "main"}
 pandas = "^1"
 scikit-learn = "^1"
 matplotlib = "^3.5"

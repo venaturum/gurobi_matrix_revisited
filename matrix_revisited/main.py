@@ -94,7 +94,7 @@ def cli():
         nargs=len(generate_instance_params),
         type=float,
         default=None,
-        help="Run the models on a randomly generated problem instance specified by parameters {problem_spec_params}.",
+        help=f"Run the models on a randomly generated problem instance specified by parameters {generate_instance_params}.",
     )
     group.add_argument(
         "--problem-random",

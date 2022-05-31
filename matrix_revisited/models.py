@@ -1,6 +1,8 @@
+import warnings
 from abc import ABC, abstractmethod
 
 import gurobipy as gp
+import gurobipy_exceptions as gp_exc
 import numpy as np
 from gurobipy import GRB
 
@@ -93,11 +95,12 @@ class MR_Base(ABC):
         """
         try:
             self.m.optimize(self._generate_root_sol_callback())
-        except Exception as e:
-            if e.errno == 10010:
-                runtime, init_root_sol, obj_val = np.nan, np.nan, np.nan
-            else:
-                raise e
+        except gp_exc.GRBSizeLimitExceeded:
+            warnings.warn("Model limit exceeded.", RuntimeWarning)
+            runtime, init_root_sol, obj_val = np.nan, np.nan, np.nan
+        except gp.GurobiError as e:
+            print(e)
+            raise
         else:
             runtime = self.m.runtime
             init_root_sol = self.init_root_sol_obj
