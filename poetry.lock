@@ -174,7 +174,7 @@ gurobipy = ">=9"
 type = "git"
 url = "https://github.com/venaturum/gurobipy_exceptions.git"
 reference = "main"
-resolved_reference = "d6b6ce29e9f541709c3c61ba20bed642fd68ec2d"
+resolved_reference = "e2c92fd7b63282a6990ec35c398451aa4443959d"
 
 [[package]]
 name = "ipykernel"
