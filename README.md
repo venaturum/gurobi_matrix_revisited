@@ -1,4 +1,4 @@
-![The Matrix: Revisited](header.png)
+![The Matrix: Revisited](header.svg)
 
 ## A problem proposed by Gurobi
 

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="257.37582mm"
+   height="58.505295mm"
+   viewBox="0 0 257.37582 58.505295"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   sodipodi:docname="header.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.38885732"
+     inkscape:cx="159.44151"
+     inkscape:cy="677.62643"
+     inkscape:window-width="1536"
+     inkscape:window-height="801"
+     inkscape:window-x="619"
+     inkscape:window-y="1432"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <defs
+     id="defs2">
+    <rect
+       x="176.15717"
+       y="351.0285"
+       width="185.15788"
+       height="51.432747"
+       id="rect1882" />
+    <rect
+       x="176.15717"
+       y="351.0285"
+       width="1126.3772"
+       height="282.8801"
+       id="rect1882-6" />
+    <rect
+       x="176.15717"
+       y="351.0285"
+       width="902.64471"
+       height="118.29532"
+       id="rect1882-69" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-148.69765,101.54756)">
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,208.43322,-195.95876)"
+       id="text1880"
+       style="font-size:40px;line-height:1.25;font-family:Miltown;-inkscape-font-specification:Miltown;letter-spacing:30px;word-spacing:0px;white-space:pre;shape-inside:url(#rect1882);fill:#00e400;fill-opacity:1"><tspan
+         x="176.15625"
+         y="386.98975"
+         id="tspan28378">THE</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,102.59764,-185.63524)"
+       id="text1880-6"
+       style="font-size:120px;line-height:1.25;font-family:Miltown;-inkscape-font-specification:Miltown;letter-spacing:100px;word-spacing:0px;white-space:pre;shape-inside:url(#rect1882-6);fill:#00e400;fill-opacity:1"><tspan
+         x="176.15625"
+         y="458.91065"
+         id="tspan28384"><tspan
+           style="letter-spacing:80px"
+           id="tspan28380">MATRI</tspan><tspan
+           dx="-20"
+           id="tspan28382">X</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,163.7216,-151.95482)"
+       id="text1880-3"
+       style="font-size:64px;line-height:1.25;font-family:Miltown;-inkscape-font-specification:Miltown;letter-spacing:6px;word-spacing:0px;white-space:pre;shape-inside:url(#rect1882-69);fill:#00e400;fill-opacity:1"><tspan
+         x="176.15625"
+         y="408.56602"
+         id="tspan28386">REVISITED</tspan></text>
+  </g>
+</svg>
