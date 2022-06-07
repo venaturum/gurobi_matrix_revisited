@@ -9,7 +9,7 @@ from matrix_revisited.problem_data import generate_instance_params
 
 def _model(m):
     if m not in model_dict.keys():
-        raise TypeError("f{m} is not valid for a --model parameter.")
+        raise TypeError(f"{m} is not valid for a --model parameter.")
     return m
 
 
@@ -31,7 +31,9 @@ def _make_spec_dict(spec):
 
 
 def run(args):
-    models = list(map(model_dict.get, args.models))
+    models = [  # maps string to model and ensures "best" excecution order
+        m for k, m in model_dict.items() if k in args.models
+    ]
     if args.problem_file:
         results = experiment.run_from_file(
             models,

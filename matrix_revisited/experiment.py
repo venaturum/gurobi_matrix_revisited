@@ -1,4 +1,7 @@
+import warnings
 from datetime import datetime, timedelta
+
+import gurobipy_exceptions as gp_exc
 
 from matrix_revisited.problem_data import (
     generate_instance,
@@ -41,19 +44,26 @@ def run_models(
     runs=1,
 ):
     results = []
-    for model in models:
-        for init_heuristic in init_heuristics:
-            results.append(
-                run_model(
-                    model,
-                    init_heuristic,
-                    matrices,
-                    target,
-                    instance_num,
-                    log_to_console,
-                    runs,
+    try:
+        for model in models:
+            for init_heuristic in init_heuristics:
+                results.append(
+                    run_model(
+                        model,
+                        init_heuristic,
+                        matrices,
+                        target,
+                        instance_num,
+                        log_to_console,
+                        runs,
+                    )
                 )
-            )
+    except gp_exc.GRBSizeLimitExceeded:
+        warnings.warn(
+            f"Aborting instance {instance_num} for all models due to {model} reaching size limit.",
+            RuntimeWarning,
+        )
+        results = []
     return results
 
 

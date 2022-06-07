@@ -95,9 +95,12 @@ class MR_Base(ABC):
         """
         try:
             self.m.optimize(self._generate_root_sol_callback())
-        except gp_exc.GRBSizeLimitExceeded:
-            warnings.warn("Model limit exceeded.", RuntimeWarning)
-            runtime, init_root_sol, obj_val = np.nan, np.nan, np.nan
+        except gp_exc.GRBSizeLimitExceeded as e:
+            warnings.warn(
+                "Model limit exceeded",
+                RuntimeWarning,
+            )
+            raise e
         except gp.GurobiError as e:
             print(e)
             raise
@@ -286,10 +289,10 @@ class MR_MILP_L1_SOS(MR_Base):
 model_dict = {
     model.__name__: model
     for model in [
+        MR_MILP_L1,
+        MR_MILP_L1_SOS,
         MR_Quad,
         MR_Cons_Relax_L1,
         MR_Cons_Relax_L2,
-        MR_MILP_L1,
-        MR_MILP_L1_SOS,
     ]
 }
