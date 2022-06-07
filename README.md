@@ -16,7 +16,7 @@ The models are implemented using [*gurobipy*](https://pypi.org/project/gurobipy/
 
 Two heuristics are provided for producing an initial solution, both based on LP rounding, but implemented via linear regression with [*scikit-learn*](https://scikit-learn.org).
 
-A comparison of results over a set of randomly generated problem instances can be found in */matrix_revisited/notebooks/analysis.ipynb*
+A comparison of results over a set of randomly generated problem instances can be found in [analysis.ipynb](matrix_revisited/notebooks/analysis.ipynb)
 
 ## Modelling definitions
 
